@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ESP8266连接阿里云mqtt【安信可串口调试助手】 | Hexo个人站</title><meta name="keywords" content="ESP8266"><meta name="author" content="TK-DS"><meta name="copyright" content="TK-DS"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参考链接：  https:&#x2F;&#x2F;www.freesion.com&#x2F;article&#x2F;4938414926&#x2F; https:&#x2F;&#x2F;www.pianshen.com&#x2F;article&#x2F;69442006191&#x2F; https:&#x2F;&#x2F;aithinker.blog.csdn.net&#x2F;article&#x2F;details&#x2F;112971695  使用安信可串口助手调试： 1.将串口打开，首先发送一下AT查看ESP模组是否正常，或者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP8266连接阿里云mqtt【安信可串口调试助手】">
+<meta property="og:url" content="http://example.com/2021/02/11/ESP8266%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91mqtt%E3%80%90%E5%AE%89%E4%BF%A1%E5%8F%AF%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95%E5%8A%A9%E6%89%8B%E3%80%91/index.html">
+<meta property="og:site_name" content="Hexo个人站">
+<meta property="og:description" content="参考链接：  https:&#x2F;&#x2F;www.freesion.com&#x2F;article&#x2F;4938414926&#x2F; https:&#x2F;&#x2F;www.pianshen.com&#x2F;article&#x2F;69442006191&#x2F; https:&#x2F;&#x2F;aithinker.blog.csdn.net&#x2F;article&#x2F;details&#x2F;112971695  使用安信可串口助手调试： 1.将串口打开，首先发送一下AT查看ESP模组是否正常，或者">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-04T12:07:51.241Z">
+<meta property="article:author" content="TK-DS">
+<meta property="article:tag" content="ESP8266">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/11/ESP8266%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91mqtt%E3%80%90%E5%AE%89%E4%BF%A1%E5%8F%AF%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95%E5%8A%A9%E6%89%8B%E3%80%91/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-03-04 20:07:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-heart"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo个人站</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-heart"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ESP8266连接阿里云mqtt【安信可串口调试助手】</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-10T16:00:00.000Z" title="发表于 2021-02-11 00:00:00">2021-02-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-04T12:07:51.241Z" title="更新于 2021-03-04 20:07:51">2021-03-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">607</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>参考链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.freesion.com/article/4938414926/">https://www.freesion.com/article/4938414926/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.pianshen.com/article/69442006191/">https://www.pianshen.com/article/69442006191/</a></li>
+<li><a target="_blank" rel="noopener" href="https://aithinker.blog.csdn.net/article/details/112971695">https://aithinker.blog.csdn.net/article/details/112971695</a></li>
+</ul>
+<p>使用安信可串口助手调试：</p>
+<p>1.将串口打开，首先发送一下AT查看ESP模组是否正常，或者发送AT+TST使其重启一下；<br>2. 发送<code>AT+CWMODE=1</code>，将模组调为STA模式；<br>3. 发送<code>AT+CWJAP=&quot;WiFi名字&quot;,&quot;WiFi密码&quot;</code>，使模组连接WiFi接入网络，模组回复<code>WIFI CONNECTED</code>和<code>WIFI GOT IP</code>就是成功；<br>注意：模组会将WiFi的信息和模式保存在Flash中，所以下次重新上电启动之后会自动连接WiFi。<br>4. 发送<code>AT+MQTTUSERCFG=0,1,&quot;填写clientID&quot;,&quot;填写UserName&quot;,&quot;填写密码&quot;,0,0,&quot;&quot;</code>，设置MQTT客户端的信息；<br>注意：clientID的参数中有使用逗号的话需要在前面加上反斜杠，否则会返回ERROR。<br><strong>在这里会出现非常麻烦的事，就是加密算法的选择，我在自己的环境上尝试了许多，发现安信可官方的参数工具不适合我，最后用了一个网页的html工具去生成哈希5</strong><br>另一种信息设置方法（分步）：</p>
+<ul>
+<li>AT+MQTTUSERCFG=0,1,””,””,””,0,0,””</li>
+<li>AT+MQTTUSERNAME=0,”c82b968ebe5c&amp;a1gh70UicfD”</li>
+<li>AT+MQTTPASSWORD=0,”7cbf1bf3f2e5cfe950f9c8391253700b”</li>
+<li>AT+MQTTCLIENTID=0,”c82b968ebe5c|securemode=3,signmethod=hmacmd5|”     </li>
+</ul>
+<ol start="5">
+<li>发送<code>AT+MQTTCONN=0,&quot;连接域名&quot;,1883,0</code>，连接阿里云MQTT服务器，连接成功会返回<code>+MQTTCONNECTED:0,1,&quot;连接域名&quot;,&quot;1883&quot;,&quot;&quot;,0</code>。</li>
+<li>这个时候就可以在阿里云上面看到设备已经上线了，接着可以进行通信测试。在这里，我选择使用NTP服务进行通信测试，因为这个功能我们后续要开发，而且NTP时钟同步的端云通信比较简单，只需要分别订阅和发布一个topic就可以了。不了解NTP服务的朋友可以查看以下的开发文档。<br> 关于阿里云物联网平台NTP服务的<a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/102509.html?spm=5176.11485173.0.dexternal.f4a359afyEy1IG">开发文档</a></li>
+<li><code>AT+MQTTPUB=0,&quot;/ext/ntp/a11O2nfiMHT/core/request&quot;,&quot;&#123;\&quot;deviceSendTime\&quot;:\&quot;1571724098000\&quot;&#125;&quot;,0,0</code>向云端发送NTP请求，其中的deviceSendTime是设备本地的毫秒时间戳（这里的时间戳只是随便弄的）。成功的话云端会回复+MQTTSUBRECV:0,”/ext/ntp/产品key/设备名称/response”,100,{“deviceSendTime”:”1571724098000”,”serverSendTime”:”1596080122364”,”serverRecvTime”:”1596080122364”}<br>AT+MQTTSUB=0,”/a1gh70UicfD/c82b968ebe5c/user/get”,1  </li>
+</ol>
+<p>DeviceSecret即为三元组中的DeviceSecret；<br>content为clientId、deviceName、ProductKey 的拼接：</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">TK-DS</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/11/ESP8266%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91mqtt%E3%80%90%E5%AE%89%E4%BF%A1%E5%8F%AF%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95%E5%8A%A9%E6%89%8B%E3%80%91/">http://example.com/2021/02/11/ESP8266%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91mqtt%E3%80%90%E5%AE%89%E4%BF%A1%E5%8F%AF%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95%E5%8A%A9%E6%89%8B%E3%80%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo个人站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ESP8266/">ESP8266</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/11/Chevereto%E5%BC%BA%E5%A4%A7%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BA%8A%E7%A8%8B%E5%BA%8F/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Chevereto强大好用的图床程序</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/11/HEXO%E9%83%A8%E7%BD%B2%20%20%20%E4%B8%80%E5%A0%86%E5%9D%91/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">HEXO部署  一堆坑</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">TK-DS</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TK-DS-DS"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">无</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/04/Typecho%E7%9A%84%E5%BC%80%E7%AF%87%20%E5%8F%8A%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/" title="Typecho的开篇 及宝塔面板的数据迁移"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Typecho的开篇 及宝塔面板的数据迁移"/></a><div class="content"><a class="title" href="/2021/03/04/Typecho%E7%9A%84%E5%BC%80%E7%AF%87%20%E5%8F%8A%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/" title="Typecho的开篇 及宝塔面板的数据迁移">Typecho的开篇 及宝塔面板的数据迁移</a><time datetime="2021-03-04T07:17:55.000Z" title="发表于 2021-03-04 15:17:55">2021-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/04/%E6%88%91%E7%9A%84Typecho%E5%8D%9A%E5%AE%A2%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/" title="我的Typecho博客改造计划"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="我的Typecho博客改造计划"/></a><div class="content"><a class="title" href="/2021/03/04/%E6%88%91%E7%9A%84Typecho%E5%8D%9A%E5%AE%A2%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/" title="我的Typecho博客改造计划">我的Typecho博客改造计划</a><time datetime="2021-03-04T07:17:55.000Z" title="发表于 2021-03-04 15:17:55">2021-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/16/UptimeRobot%E4%B8%80%E4%B8%AA%E5%81%A5%E5%85%A8%E7%9A%84%E7%BD%91%E7%AB%99%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F/" title="UptimeRobot一个健全的网站监管系统"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UptimeRobot一个健全的网站监管系统"/></a><div class="content"><a class="title" href="/2021/02/16/UptimeRobot%E4%B8%80%E4%B8%AA%E5%81%A5%E5%85%A8%E7%9A%84%E7%BD%91%E7%AB%99%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F/" title="UptimeRobot一个健全的网站监管系统">UptimeRobot一个健全的网站监管系统</a><time datetime="2021-02-16T12:36:48.000Z" title="发表于 2021-02-16 20:36:48">2021-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/16/%E5%8F%AF%E9%81%93%E4%BA%91%E7%9A%84%E4%BA%91%E7%9B%98%E5%AE%89%E8%A3%85/" title="可道云的云盘安装"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="可道云的云盘安装"/></a><div class="content"><a class="title" href="/2021/02/16/%E5%8F%AF%E9%81%93%E4%BA%91%E7%9A%84%E4%BA%91%E7%9B%98%E5%AE%89%E8%A3%85/" title="可道云的云盘安装">可道云的云盘安装</a><time datetime="2021-02-16T11:45:24.000Z" title="发表于 2021-02-16 19:45:24">2021-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/15/html5%E5%AD%A6%E4%B9%A0/" title="html5学习"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="html5学习"/></a><div class="content"><a class="title" href="/2021/02/15/html5%E5%AD%A6%E4%B9%A0/" title="html5学习">html5学习</a><time datetime="2021-02-15T07:27:24.000Z" title="发表于 2021-02-15 15:27:24">2021-02-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By TK-DS</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '76lUd8PyyylagBTDQID6vXaa-gzGzoHsz',
+      appKey: 'CJn2TsPtpqkRUQXTl2Y9Ge4J',
+      placeholder: '记得留下你的昵称和邮箱,可以快速收到回复呦！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/# emoji CDN',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
